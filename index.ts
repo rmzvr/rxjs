@@ -167,6 +167,7 @@ import { ajax } from 'rxjs/ajax';
 // Використовуючи Rxjs написати потік, який буде слухати кліки по кнопці і відправляти при натисканню на неї запит на сервер із текстом введеним в пошук. В subscribe ми маємо отримати дані з серверу.
 // Оператори, які можуть знадобитися: fromEvent, switchMap, ajax, map, etc
 
+
 let input: string = '';
 
 const search = document.querySelector('input');

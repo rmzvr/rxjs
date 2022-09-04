@@ -19,6 +19,8 @@ import {
   mapTo,
   toArray,
   fromEvent,
+  switchMap,
+  takeUntil,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
@@ -158,32 +160,52 @@ import { ajax } from 'rxjs/ajax';
 // ajax
 //   .getJSON('https://jsonplaceholder.typicode.com/posts')
 //   .pipe(
-//     mergeAll(),
-//     filter((value) => value.id < 5),
-//     toArray()
+//     mergeMap((response) =>
+//       from<any>(response).pipe(
+//         filter((value: any) => value.id < 5),
+//         toArray()
+//       )
+//     )
 //   )
 //   .subscribe(console.log);
 
 // Використовуючи Rxjs написати потік, який буде слухати кліки по кнопці і відправляти при натисканню на неї запит на сервер із текстом введеним в пошук. В subscribe ми маємо отримати дані з серверу.
 // Оператори, які можуть знадобитися: fromEvent, switchMap, ajax, map, etc
 
+// const URL = 'https://fake-movie-database-api.herokuapp.com/api?s=';
 
-let input: string = '';
+// let inputValue = '';
 
-const search = document.querySelector('input');
-const button = document.querySelector('button');
+// const search = document.querySelector('input');
+// const button = document.querySelector('button');
 
-const searchObs = fromEvent(search, 'keypress');
-const buttonObs = fromEvent(button, 'click');
+// const searchObs$ = fromEvent<InputEvent>(search, 'keyup');
+// const buttonObs$ = fromEvent<MouseEvent>(button, 'click');
 
-searchObs.subscribe((event: Event) => {
-  input = event.target.value;
-});
+// searchObs$
+//   .pipe(map((event: InputEvent) => (event.target as HTMLInputElement).value))
+//   .subscribe((value) => {
+//     inputValue = value;
+//   });
 
-buttonObs.subscribe((event) => {
-  console.log(input);
-});
+// buttonObs$
+//   .pipe(switchMap(() => ajax.getJSON(URL + inputValue)))
+//   .subscribe((response: { property: [] }) => {
+//     console.log(...response['Search']);
+//   });
 
 // Використовуючи RxJs зробити свою імплементацію Drag&Drop.
 // Деталі: Створіть 3 observable mousedown$, mousemove$, mouseup$. Які будуть слухати події mousedown, mousemove, mouseup відповідно. Ваша задача поєднати їх так, щоб mousemove$ починав працювати тільки коли користувач натикає  на mousedown, і переставали слухати, коли відбувається mouseup. Тобто постійно ви маєте слухати тільки mousedown, а підписуватися на зміну mousemove i mouseup тільки після івенту mousedown
 // const mousedown$ = ... .pipe().subscribe(value - колекція mousemove подій, яка починається віддаватися при mousedown і закінчує стрім при mouseup)
+
+// const body = document.querySelector('body');
+
+// const mousedown$ = fromEvent(body, 'mousedown');
+// const mousemove$ = fromEvent(body, 'mousemove');
+// const mouseup$ = fromEvent(body, 'mouseup');
+
+// mousedown$.pipe();
+
+// mousedown$
+//   .pipe(mergeMap(() => mousemove$.pipe(takeUntil(mouseup$))))
+//   .subscribe(console.log);

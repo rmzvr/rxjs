@@ -128,27 +128,10 @@ import { ajax } from 'rxjs/ajax';
 //   });
 // }
 
-// 2 variant
-
-// function hotInterval() {
-//   const subject = new BehaviorSubject(0);
-
-//   let count = subject.value;
-
-//   setInterval(() => {
-//     if (count < 4) {
-//       subject.next(count += 1);
-//     } else {
-//       subject.complete();
-//     }
-//   }, 2000);
-
-//   return subject;
-// }
-
 // const hotInterval$ = hotInterval();
 
 // hotInterval$.subscribe((value) => console.log('sub1:', value));
+
 // setTimeout(
 //   () => hotInterval$.subscribe((value) => console.log('sub2:', value)),
 //   3000
@@ -203,8 +186,6 @@ import { ajax } from 'rxjs/ajax';
 // const mousedown$ = fromEvent(body, 'mousedown');
 // const mousemove$ = fromEvent(body, 'mousemove');
 // const mouseup$ = fromEvent(body, 'mouseup');
-
-// mousedown$.pipe();
 
 // mousedown$
 //   .pipe(mergeMap(() => mousemove$.pipe(takeUntil(mouseup$))))

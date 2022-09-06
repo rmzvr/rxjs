@@ -6,17 +6,10 @@ import {
   tap,
   delay,
   catchError,
-  interval,
-  takeWhile,
-  BehaviorSubject,
   mergeMap,
   map,
-  concatMap,
-  mergeAll,
   filter,
-  concatAll,
   from,
-  mapTo,
   toArray,
   fromEvent,
   switchMap,
@@ -107,8 +100,6 @@ import { ajax } from 'rxjs/ajax';
 // sub2 2
 // sub1 3
 // sub2 3
-
-// 1 variant
 
 // function hotInterval() {
 //   let count = 0;
